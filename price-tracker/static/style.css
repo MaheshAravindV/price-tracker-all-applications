@@ -1,0 +1,13 @@
+:root{
+    font-family: 'Courier New', Courier, monospace;
+    white-space: nowrap;
+}
+h1{
+    font-size:1.75rem;
+}
+h2{
+    font-size: 1.25rem;
+}
+p{
+    font-size: 1rem;
+}
