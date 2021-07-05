@@ -2,4 +2,6 @@ version: 0.0
 os: linux
 files:
   - source: /price-tracker
-    destination: /testfolder
+    destination: /home/ubuntu/price-tracker
+  - source: /price-tracker-bot
+    destination:  /home/ubuntu/price-tracker-bot
