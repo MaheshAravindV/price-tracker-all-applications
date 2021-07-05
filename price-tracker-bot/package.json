@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "node index.js",
+    "setup": "sudo npm i",
+    "start" : "sudo -E node index.js",
     "run-dev" : "set NODE_ENV=development&&nodemon index.js"
   },
   "keywords": [],
