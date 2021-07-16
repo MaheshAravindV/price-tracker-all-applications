@@ -16,7 +16,7 @@ const itemSchema = require('./schema')
 const Item = mongoose.model('Item',itemSchema)
 
 const app = express()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORTAPI
 
 mongoose.connect(`mongodb+srv://${process.env.UNAME}:${process.env.PASS}@cluster0.c81al.mongodb.net/price-tracker?retryWrites=true&w=majority`,
 { useUnifiedTopology: true, useNewUrlParser: true },
