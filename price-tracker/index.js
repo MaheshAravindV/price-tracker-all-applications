@@ -6,6 +6,10 @@ const AWS = require('aws-sdk')
 AWS.config.update({'region' : 'ap-south-1'})
 const lambda = new AWS.Lambda()
 
+const updatePrices = require('./updatePrices')
+const Cronjob = require('cron').CronJob
+new Cronjob('0 0 0 * * *',updatePrices)
+
 if(process.env.NODE_ENV === 'development') require('dotenv').config()
 
 const itemSchema = require('./schema')

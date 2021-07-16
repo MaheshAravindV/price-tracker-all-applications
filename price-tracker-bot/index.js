@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 if(process.env.NODE_ENV === 'development') require('dotenv').config()
 const { userSchema,itemSchema } = require('./schema')
 const User = mongoose.model('User',userSchema)
-const PORT = process.env.PORT || 5000
 
 mongoose.connect(`mongodb+srv://${process.env.UNAME}:${process.env.PASS}@cluster0.c81al.mongodb.net/price-tracker?retryWrites=true&w=majority`,
 { useUnifiedTopology: true, useNewUrlParser: true },
