@@ -17,10 +17,6 @@ const withHttp = (url) => url.replace(/^(?:(.*:)?\/\/)?(.*)/i, (match, schemma, 
 
 client.login(process.env.BOT_TOKEN)
 
-// client.on("ready",()=>{
-//     console.log(client.users)
-// })
-
 client.on("message",async msg=>{
     if(msg.author.bot) return
     let currentUser = await User.findById(msg.author.id)
