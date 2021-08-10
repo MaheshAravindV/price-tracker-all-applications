@@ -13,9 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chart.js": "^3.5.0",
+    "chartjs-node-canvas": "^3.2.0",
+    "cron": "^1.8.2",
     "discord.js": "^12.5.3",
-    "image-charts": "^5.6.17",
     "mongoose": "^5.12.15",
+    "request": "^2.88.2",
     "requests": "^0.3.0"
   },
   "devDependencies": {
