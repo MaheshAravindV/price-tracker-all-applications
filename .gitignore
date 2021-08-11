@@ -1,0 +1,6 @@
+/*/node_modules
+.env
+lambdaconf.json
+/.vscode
+*.pem
+*.ppk

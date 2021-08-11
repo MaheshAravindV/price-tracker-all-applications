@@ -6,6 +6,8 @@ new Cronjob("0 0 0 * * *", () => {
   require("./dailyReminder");
 });
 
+const createImage = require("./createImage");
+
 const mongoose = require("mongoose");
 if (process.env.NODE_ENV === "development") require("dotenv").config();
 const User = require("./schema");
@@ -68,8 +70,12 @@ client.on("message", async (msg) => {
         "You havent added any items to your wishlist yet. Add items using the add command!"
       );
     wishlist.forEach(async (item) => {
-      msg.reply(item);
-      const price = console.log(history);
+      const itemtitle = item.split("/")[3];
+      const embed = new Discord.MessageEmbed({
+        title: itemtitle,
+        url: item,
+      });
+      msg.reply(embed);
     });
   }
 });
