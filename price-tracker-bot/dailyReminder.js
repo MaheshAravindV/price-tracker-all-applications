@@ -1,4 +1,3 @@
-function dailyRemainder() {}
 if (process.env.NODE_ENV === "development") require("dotenv").config();
 
 const http = require("http");
@@ -28,9 +27,8 @@ client.on("ready", () => {
       const currentuser = await client.users.fetch(user._id);
       user.wishlist.map((urlreq) => {
         const postData = JSON.stringify({ url: urlreq });
-
         const options = {
-          baseUrl: "http://localhost",
+          host: "15.206.146.4",
           port: 5000,
           method: "POST",
           headers: {

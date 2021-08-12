@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const Cronjob = require("cron").CronJob;
-new Cronjob("0 0 0 * * *", () => {
-  require("./dailyReminder");
-});
+new Cronjob("0 0 0 * * *", () => {});
+
+require("./dailyReminder");
 
 const createImage = require("./createImage");
 
