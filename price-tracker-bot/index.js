@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const Cronjob = require("cron").CronJob;
-new Cronjob("0 0 0 * * *", () => {
+new Cronjob("0 0 9 * * *", () => {
   require("./dailyReminder");
 }).start();
 
