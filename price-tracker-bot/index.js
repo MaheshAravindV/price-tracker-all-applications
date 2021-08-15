@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const Cronjob = require("cron").CronJob;
-new Cronjob("0 0 0 * * *", () => {});
-
-require("./dailyReminder");
+new Cronjob("0 0 0 * * *", () => {
+  require("./dailyReminder");
+}).start();
 
 const createImage = require("./createImage");
 
@@ -26,7 +26,7 @@ const withHttp = (url) =>
     schemma ? match : `http://${nonSchemmaUrl}`
   );
 
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOTTOKEN);
 
 client.on("message", async (msg) => {
   if (msg.author.bot) return;

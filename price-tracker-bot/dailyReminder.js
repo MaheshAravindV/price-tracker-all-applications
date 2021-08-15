@@ -1,10 +1,10 @@
-if (process.env.NODE_ENV === "development") require("dotenv").config();
+require("dotenv").config();
 
 const http = require("http");
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOTTOKEN);
 
 const mongoose = require("mongoose");
 const User = require("./schema");
@@ -28,7 +28,7 @@ client.on("ready", () => {
       user.wishlist.map((urlreq) => {
         const postData = JSON.stringify({ url: urlreq });
         const options = {
-          host: "15.206.146.4",
+          host: process.env.APIURL,
           port: 5000,
           method: "POST",
           headers: {
@@ -46,6 +46,7 @@ client.on("ready", () => {
           });
 
           res.once("end", async () => {
+            console.log(postData);
             itemRes = JSON.parse(data);
             const stream = await createImage(itemRes);
             const attachment = new Discord.MessageAttachment(
