@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "sudo npm i",
-    "start": "sudo -E node index.js",
+    "start": "sudo -E node index.js &",
     "run-dev": "set NODE_ENV=development&&nodemon index.js",
     "testtmp": "set NODE_ENV=development&&nodemon daily-reminder.js"
   },
