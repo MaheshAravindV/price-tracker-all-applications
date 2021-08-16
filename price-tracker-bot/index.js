@@ -69,7 +69,7 @@ client.on("message", async (msg) => {
         "You havent added any items to your wishlist yet. Add items using the add command!"
       );
     wishlist.forEach(async (item) => {
-      const { embed, attachment } = await makeEmbed(urlreq);
+      const { embed, attachment } = await makeEmbed(item);
       msg.reply(embed);
       msg.reply(attachment);
     });
