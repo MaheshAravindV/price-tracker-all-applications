@@ -1,12 +1,11 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
+const dailyReminder = require("./dailyReminder");
 const Cronjob = require("cron").CronJob;
-new Cronjob("0 0 9 * * *", () => {
-  require("./dailyReminder");
-}).start();
+new Cronjob("0 0 9 * * *", dailyReminder).start();
 
-const createImage = require("./createImage");
+const embedMaker = require("./embedMaker");
 
 const mongoose = require("mongoose");
 if (process.env.NODE_ENV === "development") require("dotenv").config();
@@ -70,12 +69,9 @@ client.on("message", async (msg) => {
         "You havent added any items to your wishlist yet. Add items using the add command!"
       );
     wishlist.forEach(async (item) => {
-      const itemtitle = item.split("/")[3];
-      const embed = new Discord.MessageEmbed({
-        title: itemtitle,
-        url: item,
-      });
+      const { embed, attachment } = await makeEmbed(urlreq);
       msg.reply(embed);
+      msg.reply(attachment);
     });
   }
 });

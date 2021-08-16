@@ -1,6 +1,4 @@
-require("dotenv").config();
-
-const http = require("http");
+if (process.env.NODE_ENV == "development") require("dotenv").config();
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -9,7 +7,7 @@ client.login(process.env.BOTTOKEN);
 const mongoose = require("mongoose");
 const User = require("./schema");
 
-const createImage = require("./createImage");
+const makeEmbed = require("./embedMaker");
 
 mongoose.connect(
   `mongodb+srv://${process.env.UNAME}:${process.env.PASS}@cluster0.c81al.mongodb.net/price-tracker?retryWrites=true&w=majority`,
@@ -20,44 +18,21 @@ mongoose.connect(
   }
 );
 
-client.on("ready", () => {
-  User.find((err, users) => {
-    if (err) console.log(err);
-    users.map(async (user) => {
-      const currentuser = await client.users.fetch(user._id);
-      user.wishlist.map((urlreq) => {
-        const postData = JSON.stringify({ url: urlreq });
-        const options = {
-          host: process.env.APIURL,
-          port: 5000,
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Content-Length": Buffer.byteLength(postData),
-          },
-        };
-
-        const req = http.request(options, (res) => {
-          var data = "";
-          res.setEncoding("utf8");
-
-          res.on("data", (chunk) => {
-            data += chunk;
-          });
-
-          res.once("end", async () => {
-            console.log(postData);
-            itemRes = JSON.parse(data);
-            const stream = await createImage(itemRes);
-            const attachment = new Discord.MessageAttachment(
-              stream,
-              "image.jpeg"
-            );
-            currentuser.send(attachment);
-          });
+function dailyReminder() {
+  client.on("ready", () => {
+    User.find((err, users) => {
+      if (err) console.log(err);
+      users.map(async (user) => {
+        const currentuser = await client.users.fetch(user._id);
+        user.wishlist.map(async (urlreq) => {
+          const { embed, attachment } = await makeEmbed(urlreq);
+          currentuser.send(embed);
+          currentuser.send(attachment);
         });
-        req.write(postData);
       });
     });
   });
-});
+}
+
+dailyReminder();
+module.exports = dailyReminder;

@@ -67,7 +67,7 @@ async function createImage(item) {
     },
   };
 
-  const image = await chartJSNodeCanvas.renderToBuffer(configuration);
+  const image = chartJSNodeCanvas.renderToBuffer(configuration);
   return image;
 }
 
