@@ -34,5 +34,4 @@ function dailyReminder() {
   });
 }
 
-dailyReminder();
 module.exports = dailyReminder;
