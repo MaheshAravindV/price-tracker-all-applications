@@ -5,7 +5,7 @@ const dailyReminder = require("./dailyReminder");
 const Cronjob = require("cron").CronJob;
 new Cronjob("0 0 9 * * *", dailyReminder).start();
 
-const embedMaker = require("./embedMaker");
+const makeEmbed = require("./embedMaker");
 
 const mongoose = require("mongoose");
 if (process.env.NODE_ENV === "development") require("dotenv").config();
