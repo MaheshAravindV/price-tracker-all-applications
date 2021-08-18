@@ -19,16 +19,24 @@ mongoose.connect(
 );
 
 function dailyReminder() {
-  client.on("ready", () => {
-    User.find((err, users) => {
-      if (err) console.log(err);
-      users.map(async (user) => {
-        const currentuser = await client.users.fetch(user._id);
-        user.wishlist.map(async (urlreq) => {
-          const { embed, attachment } = await makeEmbed(urlreq);
-          currentuser.send(embed);
-          currentuser.send(attachment);
-        });
+  const today =
+    "**" +
+    new Date().getDate() +
+    "/" +
+    new Date().getMonth() +
+    "/" +
+    new Date().getFullYear();
+  +"**";
+  User.find((err, users) => {
+    if (err) console.log(err);
+    users.map(async (user) => {
+      const currentuser = await client.users.fetch(user._id);
+      currentuser.send(today);
+      currentuser.send(`**Hello, Let's see how your wishlist is doing today**`);
+      user.wishlist.map(async (urlreq) => {
+        const { embed, attachment } = await makeEmbed(urlreq);
+        currentuser.send(embed);
+        currentuser.send(attachment);
       });
     });
   });

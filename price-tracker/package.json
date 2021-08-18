@@ -6,7 +6,7 @@
   "scripts": {
     "setup": "sudo npm i",
     "start": "set NODE_ENV=production && sudo -E node index.js &",
-    "run-dev": "set NODE_ENV=development&&nodemon index.js",
+    "dev": "set NODE_ENV=development&&nodemon index.js",
     "testtmp": "set NODE_ENV=development&&nodemon updatePrices.js"
   },
   "keywords": [],
