@@ -73,5 +73,8 @@ client.on("message", async (msg) => {
       msg.reply(embed);
       msg.reply(attachment);
     });
+  } else if (command[0] === "remove") {
+    wishlist = currentUser.wishlist;
+    wishlist;
   }
 });

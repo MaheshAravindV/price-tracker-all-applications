@@ -23,10 +23,10 @@ function dailyReminder() {
     "**" +
     new Date().getDate() +
     "/" +
-    new Date().getMonth() +
+    (new Date().getMonth() + 1) +
     "/" +
-    new Date().getFullYear();
-  +"**";
+    new Date().getFullYear() +
+    "**";
   User.find((err, users) => {
     if (err) console.log(err);
     users.map(async (user) => {
