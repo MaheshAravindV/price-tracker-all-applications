@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 const dailyReminder = require("./dailyReminder");
 const Cronjob = require("cron").CronJob;
-new Cronjob("0 0 9 * * *", dailyReminder).start();
+new Cronjob("0 30 3 * * *", dailyReminder).start();
 
 const makeEmbed = require("./embedMaker");
 
